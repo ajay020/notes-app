@@ -29,7 +29,7 @@ class AddNoteActivity : AppCompatActivity() {
         val title = binding.editNoteTitle.text.toString().trim()
         val content = binding.editNoteContent.text.toString().trim()
 
-        if (title.isNotEmpty()) {
+        if (title.isNotEmpty() && content.isNotEmpty()) {
             val note = Note(
                 title = title,
                 content = content

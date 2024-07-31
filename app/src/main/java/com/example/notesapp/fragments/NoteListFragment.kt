@@ -47,9 +47,19 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
 
         // Observe notes and set adapter
         noteViewModel.allNotes.observe(viewLifecycleOwner) { notes ->
-            adapter = NoteAdapter(notes, this)
-            binding.recyclerview.adapter = adapter
-            Log.d("DATA", notes.toString())
+
+            if (notes.isNullOrEmpty()) {
+                // Show empty message if no notes
+                binding.recyclerview.visibility = View.GONE
+                binding.emptyPlaceHolder.visibility = View.VISIBLE
+            } else {
+                // Show notes in RecyclerView
+                binding.recyclerview.visibility = View.VISIBLE
+                binding.emptyPlaceHolder.visibility = View.GONE
+                adapter = NoteAdapter(notes, this)
+                binding.recyclerview.adapter = adapter
+            }
+
         }
     }
 

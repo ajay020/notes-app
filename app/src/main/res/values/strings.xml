@@ -48,4 +48,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="save">Save</string>
+    <string name="no_notes_available">Add Note</string>
 </resources>

@@ -1,6 +1,10 @@
 package com.example.notesapp
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +20,7 @@ import com.example.notesapp.model.Note
 class EditNoteActivity : AppCompatActivity() {
     val noteViewModel: NoteViewModel by viewModels()
     lateinit var binding: ActivityEditNoteBinding
+    private var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +38,7 @@ class EditNoteActivity : AppCompatActivity() {
         // Set up toolbar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Edit note"
+        supportActionBar?.title = "Edit Note"
 
         // Handle back button click
         binding.toolbar.setNavigationOnClickListener {
@@ -41,11 +46,16 @@ class EditNoteActivity : AppCompatActivity() {
                 .onBackPressed()
         }
 
-        val noteId = intent.getIntExtra("NOTE_ID", -1)
+        noteId = intent.getIntExtra("NOTE_ID", -1)
         if (noteId != -1) {
             noteViewModel.getNoteById(noteId).observe(this) { note ->
-                binding.editNoteTitle.setText(note.title)
-                binding.editNoteContent.setText(note.content)
+                if (note != null) {
+                    binding.editNoteTitle.setText(note.title)
+                    binding.editNoteContent.setText(note.content)
+                } else {
+                    //"Note not found or deleted!"
+                    finish() // Close the activity and return to the previous screen
+                }
             }
         }
 
@@ -64,6 +74,27 @@ class EditNoteActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Enter title", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_edit_note, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                // Handle delete action
+                if (noteId != -1) {
+                    noteViewModel.delete(Note(id = noteId, title = "", content = ""))
+                    Toast.makeText(this, "Note deleted!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
