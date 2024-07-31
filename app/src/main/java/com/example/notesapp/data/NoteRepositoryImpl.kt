@@ -6,6 +6,7 @@ import com.example.notesapp.model.Note
 
 class NoteRepositoryImpl(private val noteDao: NoteDao) : NoteRepository {
     override fun allNotes(): LiveData<List<Note>> = noteDao.getAllNotes()
+    override fun getNoteById(noteId: Int): LiveData<Note> = noteDao.getNoteById(noteId)
 
     override suspend fun insert(note: Note) = noteDao.insert(note)
 

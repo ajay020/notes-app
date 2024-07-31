@@ -6,16 +6,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.databinding.NoteItemBinding
+import com.example.notesapp.fragments.OnNoteClickListener
 import com.example.notesapp.model.Note
 
-class NoteAdapter(private val notes: List<Note>) :
+class NoteAdapter(private val notes: List<Note>, private val listener: OnNoteClickListener) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
-    class NoteViewHolder(private val binding: NoteItemBinding) :
+    inner class NoteViewHolder(private val binding: NoteItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
             binding.noteTitle.text = note.title
             binding.noteContent.text = note.content
+
+            binding.root.setOnClickListener{
+                listener.onNoteClick(note)
+            }
         }
     }
 

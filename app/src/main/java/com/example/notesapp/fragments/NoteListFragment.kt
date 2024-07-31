@@ -1,5 +1,6 @@
 package com.example.notesapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,12 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.notesapp.EditNoteActivity
 import com.example.notesapp.R
 import com.example.notesapp.adapters.NoteAdapter
 import com.example.notesapp.databinding.FragmentNoteListBinding
 import com.example.notesapp.model.Note
 
-class NoteListFragment : Fragment() {
+interface OnNoteClickListener {
+    fun onNoteClick(note: Note)
+}
+
+class NoteListFragment : Fragment(), OnNoteClickListener {
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
     private val noteViewModel: NoteViewModel by viewModels()
@@ -41,7 +47,7 @@ class NoteListFragment : Fragment() {
 
         // Observe notes and set adapter
         noteViewModel.allNotes.observe(viewLifecycleOwner) { notes ->
-            adapter = NoteAdapter(notes)
+            adapter = NoteAdapter(notes, this)
             binding.recyclerview.adapter = adapter
             Log.d("DATA", notes.toString())
         }
@@ -51,5 +57,12 @@ class NoteListFragment : Fragment() {
         super.onDestroy()
         // Set _binding to null to prevent memory leaks
         _binding = null
+    }
+
+    override fun onNoteClick(note: Note) {
+        val intent = Intent(requireContext(), EditNoteActivity::class.java).apply {
+            putExtra("NOTE_ID", note.id)
+        }
+        startActivity(intent)
     }
 }

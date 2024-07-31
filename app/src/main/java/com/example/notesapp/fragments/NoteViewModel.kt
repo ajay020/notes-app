@@ -17,6 +17,10 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         allNotes = repository.allNotes()
     }
 
+    fun getNoteById(noteId: Int): LiveData<Note> {
+       return repository.getNoteById(noteId)
+    }
+
     fun insert(note: Note) = viewModelScope.launch {
         repository.insert(note)
     }
