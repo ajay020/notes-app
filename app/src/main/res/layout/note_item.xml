@@ -18,7 +18,7 @@
             android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Note Title"
+            android:text="Let me not forget"
             android:textAppearance="?attr/textAppearanceSubtitle1" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Note Content"
+            android:text="@string/place_holder_text"
             android:textAppearance="?attr/textAppearanceBody1" />
 
     </LinearLayout>

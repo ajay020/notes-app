@@ -2,25 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_note_title"
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title" />
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="Add note"
+        android:titleTextColor="@android:color/white" />
 
-    <EditText
-        android:id="@+id/edit_note_content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Write..."
-        />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/editNoteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:background="@null"
+                android:padding="12dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editNoteContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="top"
+                android:padding="12dp"
+                android:background="@null"
+                android:hint="@string/content"
+                android:inputType="textMultiLine"
+                android:minHeight="200dp"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

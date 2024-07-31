@@ -18,8 +18,8 @@ import com.example.notesapp.fragments.NoteViewModel
 import com.example.notesapp.model.Note
 
 class EditNoteActivity : AppCompatActivity() {
-    val noteViewModel: NoteViewModel by viewModels()
-    lateinit var binding: ActivityEditNoteBinding
+    private val noteViewModel: NoteViewModel by viewModels()
+    private lateinit var binding: ActivityEditNoteBinding
     private var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class EditNoteActivity : AppCompatActivity() {
                     binding.editNoteTitle.setText(note.title)
                     binding.editNoteContent.setText(note.content)
                 } else {
-                    //"Note not found or deleted!"
+                    //"Note not found or deleted!"mit
                     finish() // Close the activity and return to the previous screen
                 }
             }

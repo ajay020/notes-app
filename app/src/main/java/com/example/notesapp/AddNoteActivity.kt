@@ -2,6 +2,8 @@ package com.example.notesapp
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +22,37 @@ class AddNoteActivity : AppCompatActivity() {
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonSave.setOnClickListener {
-           saveNote()
+        // Set up toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Add Note"
+
+        // Change the back button to a close icon
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+
+        // Handle close button click
+        binding.toolbar.setNavigationOnClickListener {
+            finish() // Close the activity
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_add_note, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when(item.itemId){
+            R.id.action_save -> {
+                saveNote()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
 
     private fun saveNote() {
         val title = binding.editNoteTitle.text.toString().trim()
