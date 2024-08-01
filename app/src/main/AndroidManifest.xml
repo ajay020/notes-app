@@ -21,6 +21,10 @@
             android:exported="false"
             android:theme="@style/Theme.NotesApp" />
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NotesApp" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
