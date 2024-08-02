@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notesapp.EditNoteActivity
@@ -28,6 +29,7 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
     private val binding get() = _binding!!
     private val noteViewModel: NoteViewModel by viewModels()
     private lateinit var adapter: NoteAdapter
+    private var currentColumns = 2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,17 +42,28 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up RecyclerView with StaggeredGridLayoutManager
+        setupRecyclerView()
+        observeNotes()
+    }
+
+    fun updateLayout(columns: Int) {
+        currentColumns = columns
+        val layoutManager = binding.recyclerview.layoutManager as StaggeredGridLayoutManager
+        layoutManager.spanCount = columns
+    }
+
+    private fun setupRecyclerView() {
         binding.recyclerview.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         // Initialize the adapter once
         adapter = NoteAdapter(mutableListOf(), this)
         binding.recyclerview.adapter = adapter
+    }
 
+    private fun observeNotes() {
         // Observe notes and set adapter
         noteViewModel.allNotes.observe(viewLifecycleOwner) { notes ->
-
             if (notes.isNullOrEmpty()) {
                 // Show empty message if no notes
                 binding.recyclerview.visibility = View.GONE
@@ -63,7 +76,6 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
                 // Update the adapter with new data
                 adapter.updateNotes(notes)
             }
-
         }
     }
 

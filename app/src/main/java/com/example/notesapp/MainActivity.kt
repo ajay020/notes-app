@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +26,7 @@ import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
+    private var isGridLayout = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Apply theme before setting content view
@@ -83,15 +85,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_toggle_layout -> {
+
+                isGridLayout = !isGridLayout
+                val columns = if (isGridLayout) 2 else 1
+                updateLayout(columns)
+                // Toggle the icon based on the layout
+                val icon = if (isGridLayout) R.drawable.ic_column_view else R.drawable.ic_grid_view
+                item.setIcon(icon)
+
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun updateLayout(columns: Int) {
+        val fragment = supportFragmentManager.findFragmentById(R.id.content_frame) as? NoteListFragment
+        fragment?.updateLayout(columns)
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment: Fragment? = null
         when (item.itemId) {
 
             R.id.nav_notes -> {
                 fragment = NoteListFragment()
-
             }
-            R.id.nav_label ->{
+
+            R.id.nav_label -> {
 
             }
 

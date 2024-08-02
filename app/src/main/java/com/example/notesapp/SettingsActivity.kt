@@ -18,6 +18,8 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Settings"
 
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+
         // Load the SettingsFragment
         supportFragmentManager
             .beginTransaction()
