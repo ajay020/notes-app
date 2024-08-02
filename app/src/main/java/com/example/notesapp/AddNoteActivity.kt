@@ -58,10 +58,10 @@ class AddNoteActivity : AppCompatActivity() {
         val title = binding.editNoteTitle.text.toString().trim()
         val content = binding.editNoteContent.text.toString().trim()
 
-        if (title.isNotEmpty() && content.isNotEmpty()) {
+        if (title.isNotEmpty() ) {
             val note = Note(
                 title = title,
-                content = content
+                content = if (content.isEmpty() || content.isBlank()) "" else content
             )
             noteViewModel.insert(note)
             Toast.makeText(this, "Note saved!", Toast.LENGTH_SHORT).show()
