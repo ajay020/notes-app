@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="Appearance">
         <ListPreference
-            android:key="theme"
-            android:title="Theme"
-            android:summary="Choose your theme"
+            android:defaultValue="light"
             android:entries="@array/theme_options"
             android:entryValues="@array/theme_values"
-            android:defaultValue="light"/>
+            android:key="theme"
+            android:summary="Choose your theme"
+            android:title="Theme" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Reminders">
         <SwitchPreferenceCompat
             android:key="reminders"
-            android:title="Enable Reminders"
-            android:summary="Turn on or off reminders"/>
+            android:summary="Turn on or off reminders"
+            android:title="Enable Reminders" />
+        <Preference
+            android:key="reminder_time"
+            app:isPreferenceVisible="false"
+            android:summary="Select time for daily reminders"
+            android:title="Set Reminder Time" />
     </PreferenceCategory>
 
     <!-- Add more preferences here -->
+
+
 
 </PreferenceScreen>

@@ -1,18 +1,16 @@
 package com.example.notesapp
 
-import android.app.Activity
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.notesapp.databinding.ActivityAddNoteBinding
 import com.example.notesapp.databinding.ActivityEditNoteBinding
 import com.example.notesapp.fragments.NoteViewModel
 import com.example.notesapp.model.Note
@@ -58,22 +56,22 @@ class EditNoteActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
-        binding.buttonSave.setOnClickListener {
-            val title = binding.editNoteTitle.text.toString().trim()
-            val content = binding.editNoteContent.text.toString().trim()
-            if (title.isNotEmpty()) {
-                val updatedNote = Note(
-                    id = noteId,
-                    title = title,
-                    content = content
-                )
-                noteViewModel.update(updatedNote)
-                Toast.makeText(this, "Note updated!", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                Toast.makeText(this, "Enter title", Toast.LENGTH_SHORT).show()
-            }
+    private fun updateNote() {
+        val title = binding.editNoteTitle.text.toString().trim()
+        val content = binding.editNoteContent.text.toString().trim()
+        if (title.isNotEmpty()) {
+            val updatedNote = Note(
+                id = noteId,
+                title = title,
+                content = content
+            )
+            noteViewModel.update(updatedNote)
+            Toast.makeText(this, "Note updated!", Toast.LENGTH_SHORT).show()
+            finish()
+        } else {
+            Toast.makeText(this, "Enter title", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -87,14 +85,35 @@ class EditNoteActivity : AppCompatActivity() {
             R.id.action_delete -> {
                 // Handle delete action
                 if (noteId != -1) {
-                    noteViewModel.delete(Note(id = noteId, title = "", content = ""))
-                    Toast.makeText(this, "Note deleted!", Toast.LENGTH_SHORT).show()
-                    finish()
+                    showDeleteConfirmationDialog(this) {
+                        noteViewModel.delete(Note(id = noteId, title = "", content = ""))
+                        Toast.makeText(this, "Note deleted!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
                 }
+                true
+            }
+
+            R.id.action_save -> {
+                updateNote()
                 true
             }
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showDeleteConfirmationDialog(context: Context, onPositiveClick: () -> Unit) {
+        AlertDialog.Builder(context)
+            .setTitle("Confirm Delete")
+            .setMessage("Are you sure you want to delete this note?")
+            .setPositiveButton("Delete") { dialog, _ ->
+                onPositiveClick()
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }

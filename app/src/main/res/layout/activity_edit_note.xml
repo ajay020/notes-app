@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
     android:fitsSystemWindows="true"
     tools:context=".EditNoteActivity">
 
@@ -40,6 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
+                android:background="@null"
                 android:textSize="18sp" />
 
             <EditText
@@ -48,17 +49,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="top"
+                android:background="@null"
                 android:hint="Content"
                 android:inputType="textMultiLine"
                 android:minHeight="200dp"
                 android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/buttonSave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Save" />
 
         </LinearLayout>
     </ScrollView>
