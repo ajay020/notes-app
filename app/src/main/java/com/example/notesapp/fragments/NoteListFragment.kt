@@ -33,7 +33,6 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentNoteListBinding.inflate(inflater, container, false)
         return _binding?.root
     }
@@ -44,6 +43,10 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
         // Set up RecyclerView with StaggeredGridLayoutManager
         binding.recyclerview.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        // Initialize the adapter once
+        adapter = NoteAdapter(mutableListOf(), this)
+        binding.recyclerview.adapter = adapter
 
         // Observe notes and set adapter
         noteViewModel.allNotes.observe(viewLifecycleOwner) { notes ->
@@ -56,8 +59,9 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
                 // Show notes in RecyclerView
                 binding.recyclerview.visibility = View.VISIBLE
                 binding.emptyPlaceHolder.visibility = View.GONE
-                adapter = NoteAdapter(notes, this)
-                binding.recyclerview.adapter = adapter
+
+                // Update the adapter with new data
+                adapter.updateNotes(notes)
             }
 
         }
