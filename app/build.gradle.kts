@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -50,9 +51,14 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    //Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation ("org.mockito:mockito-core:3.12.4")
+    testImplementation ("org.mockito:mockito-inline:3.12.4")
+    testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
@@ -70,7 +76,7 @@ dependencies {
     implementation ("androidx.preference:preference:1.2.1")
 
     // Hilt (optional)
-//    implementation("com.google.dagger:hilt-android:2.48")
-//    ksp("com.google.dagger:hilt-compiler:2.48")
-//    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("com.google.dagger:hilt-android:2.49")
+    ksp("com.google.dagger:hilt-compiler:2.49")
+    implementation(kotlin("script-runtime"))
 }

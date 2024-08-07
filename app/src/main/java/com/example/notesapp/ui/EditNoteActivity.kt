@@ -1,4 +1,4 @@
-package com.example.notesapp
+package com.example.notesapp.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.notesapp.R
 import com.example.notesapp.databinding.ActivityEditNoteBinding
 import com.example.notesapp.fragments.NoteViewModel
 import com.example.notesapp.model.Note
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditNoteActivity : AppCompatActivity() {
     private val noteViewModel: NoteViewModel by viewModels()
     private lateinit var binding: ActivityEditNoteBinding

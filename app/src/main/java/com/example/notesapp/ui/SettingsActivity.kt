@@ -1,9 +1,10 @@
-package com.example.notesapp
+package com.example.notesapp.ui
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.notesapp.R
 import com.example.notesapp.fragments.SettingsFragment
 
 class SettingsActivity : AppCompatActivity() {

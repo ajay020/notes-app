@@ -1,17 +1,18 @@
-package com.example.notesapp
+package com.example.notesapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.notesapp.R
 import com.example.notesapp.databinding.ActivityAddNoteBinding
 import com.example.notesapp.fragments.NoteViewModel
 import com.example.notesapp.model.Note
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding

@@ -1,4 +1,4 @@
-package com.example.notesapp
+package com.example.notesapp.ui
 
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Intent
@@ -20,10 +20,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
+import com.example.notesapp.R
 import com.example.notesapp.fragments.NoteListFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
     private var isGridLayout = true

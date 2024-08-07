@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
+        android:name=".NoteApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,19 +26,19 @@
         </receiver>
 
         <activity
-            android:name=".EditNoteActivity"
+            android:name=".ui.EditNoteActivity"
             android:exported="false"
             android:theme="@style/Theme.NotesApp" />
         <activity
-            android:name=".AddNoteActivity"
+            android:name=".ui.AddNoteActivity"
             android:exported="false"
             android:theme="@style/Theme.NotesApp" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ui.SettingsActivity"
             android:exported="false"
             android:theme="@style/Theme.NotesApp" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

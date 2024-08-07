@@ -2,9 +2,13 @@ package com.example.notesapp.data
 
 import androidx.lifecycle.LiveData
 import com.example.notesapp.database.NoteDao
+import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.model.Note
+import javax.inject.Inject
 
-class NoteRepositoryImpl(private val noteDao: NoteDao) : NoteRepository {
+class NoteRepositoryImpl @Inject constructor(
+    private val noteDao: NoteDao
+) : NoteRepository {
     override fun allNotes(): LiveData<List<Note>> = noteDao.getAllNotes()
     override fun getNoteById(noteId: Int): LiveData<Note> = noteDao.getNoteById(noteId)
 

@@ -1,24 +1,20 @@
 package com.example.notesapp.fragments
 
-import android.app.Application
 import androidx.lifecycle.*
-import com.example.notesapp.data.NoteRepositoryImpl
-import com.example.notesapp.database.NoteDatabase
+import com.example.notesapp.data.NoteRepository
 import com.example.notesapp.model.Note
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NoteViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: NoteRepositoryImpl
-    val allNotes: LiveData<List<Note>>
-
-    init {
-        val noteDao = NoteDatabase.getDatabase(application).noteDao()
-        repository = NoteRepositoryImpl(noteDao)
-        allNotes = repository.allNotes()
-    }
+@HiltViewModel
+class NoteViewModel @Inject constructor(
+    private val repository: NoteRepository
+) : ViewModel() {
+    val allNotes: LiveData<List<Note>> = repository.allNotes()
 
     fun getNoteById(noteId: Int): LiveData<Note> {
-       return repository.getNoteById(noteId)
+        return repository.getNoteById(noteId)
     }
 
     fun insert(note: Note) = viewModelScope.launch {
