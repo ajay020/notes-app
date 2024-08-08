@@ -58,7 +58,10 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:3.12.4")
     testImplementation ("org.mockito:mockito-inline:3.12.4")
     testImplementation ("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation ("androidx.room:room-testing:2.6.1")
+
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")

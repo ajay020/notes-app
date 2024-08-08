@@ -2,7 +2,6 @@ package com.example.notesapp.data
 
 import androidx.lifecycle.LiveData
 import com.example.notesapp.database.NoteDao
-import com.example.notesapp.database.NoteDatabase
 import com.example.notesapp.model.Note
 import javax.inject.Inject
 
