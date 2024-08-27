@@ -13,11 +13,22 @@ This is a simple Note-taking app built for Android using Kotlin and the Room dat
 
 ## Screenshots
 
-### Note List Screen
-![Note List](screenshots/note_list.png)
+## Screenshots
 
-### Note Detail Screen
-![Note Detail](screenshots/note_detail.png)
+<table>
+  <tr>
+    <td><img src="screenshots/home.jpg" alt="Home Screen" width="200"/></td>
+    <td><img src="screenshots/background.jpg" alt="Card Details Screen" width="200"/></td>
+    <td><img src="screenshots/category.jpg" alt="Add Card Screen" width="200"/></td>
+  </tr>
+ 
+  <tr>
+     <td><img src="screenshots/add_affirmations.jpg" alt="Result Screen" width="200"/></td>l̥
+    <td><img src="screenshots/my_affirmations.jpg" alt="Flip Card Screen" width="200"/></td>
+     <td><img src="screenshots/settings.jpg" alt="Settings Screen" width="200"/></td>
+  </tr>
 
-### Add/Edit Note Screen
-![Add/Edit Note](screenshots/add_edit_note.png)
+  <tr>
+ 
+  </tr>
+</table>
