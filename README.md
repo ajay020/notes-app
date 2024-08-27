@@ -15,17 +15,28 @@ This is a simple Note-taking app built for Android using Kotlin and the Room dat
 
 ## Screenshots
 
+<div style="width:100%;display:flex; gap:8px; flex-wrap:wrap;">
+  <img src="screenshots/grid_view.png" width="150"/>
+   <img src="screenshots/grid_view.png" width="150"/>
+    <img src="screenshots/grid_view.png" width="150"/>
+</div>
+<div style="width:100%;display:flex; gap:8px; flex-wrap:wrap;">
+  <img src="screenshots/grid_view.png" width="150"/>
+   <img src="screenshots/grid_view.png" width="150"/>
+    <img src="screenshots/grid_view.png" width="150"/>
+</div>
+
 <table>
   <tr>
-    <td><img src="screenshots/home.jpg" alt="Home Screen" width="200"/></td>
-    <td><img src="screenshots/background.jpg" alt="Card Details Screen" width="200"/></td>
-    <td><img src="screenshots/category.jpg" alt="Add Card Screen" width="200"/></td>
+    <td><img src="screenshots/grid_view.png" alt="Home Screen" width="200"/></td>
+    <td><img src="screenshots/list_view.png" alt="note list" width="200"/></td>
+    <td><img src="screenshots/add_note.png" alt="Add note Screen" width="200"/></td>
   </tr>
  
   <tr>
-     <td><img src="screenshots/add_affirmations.jpg" alt="Result Screen" width="200"/></td>l̥
-    <td><img src="screenshots/my_affirmations.jpg" alt="Flip Card Screen" width="200"/></td>
-     <td><img src="screenshots/settings.jpg" alt="Settings Screen" width="200"/></td>
+     <td><img src="screenshots/edit_note.png" alt="Result Screen" width="200"/></td>l̥
+    <td><img src="screenshots/drawer.png" alt="Flip Card Screen" width="200"/></td>
+     <td><img src="screenshots/settings.png" alt="Settings Screen" width="200"/></td>
   </tr>
 
   <tr>
