@@ -15,8 +15,6 @@ This is a simple Note-taking app built for Android using Kotlin and the Room dat
 
 ## Screenshots
 
-## Screenshots
-
 <table>
   <tr>
     <td><img src="screenshots/grid_view.png" alt="Home Screen" width="200"/></td>
